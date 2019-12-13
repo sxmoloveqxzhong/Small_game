@@ -13,7 +13,7 @@ class pet_core:
         return copy.deepcopy(self.__currentskills)
     def get_all_information(self):
         import copy
-        return {'id':self.__id,'ability':self.__ability,'currentskills':self.__currentskills}
+        return {'id':copy.deepcopy(self.__id),'ability':copy.deepcopy(self.__ability),'currentskills':copy.deepcopy(self.__currentskills)}
     
     def set_information(self,pets_infromation): #pets_information: 3d dictionary
         if not type(pets_infromation) is dict:
@@ -59,3 +59,29 @@ class ability_core:
         self.__magicdefence=pets_ability['magicdefence']
         self.__speed=pets_ability['speed']
         self.__hp=pets_ability['hp']
+
+class skill_core:
+    def __init__(self):
+        self.__id=0
+        self.__discription='This is the test skill.'
+        self.__type='assist'
+        self.__power=0
+        self.__effect=None
+	def get_skill(self):
+        import copy
+        return {'id':copy.deepcopy(self.__id),'discription':copy.deepcopy(self.__discription),
+        'type':copy.deepcopy(self.__type),'power':copy.deepcopy(self.__power),'effect':copy.deepcopy(self.__effect)}
+    def set_skill(self,skill_dict):
+        if not type(skill_dict) is dict:
+            return -1
+        if not len(skill_dict)==5:
+            retrun -1      
+        self.__id=skill_dict['id']
+        self.__discription=skill_dict['discription']
+        self.__type=skill_dict['type']
+        self.__power=skill_dict['power']
+        self.__effect=skill_dict['effect']
+
+class current_skill_box:
+    def __init__(self):
+        self.__sillbox=['','','','']
